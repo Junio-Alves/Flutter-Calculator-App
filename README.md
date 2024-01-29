@@ -3,7 +3,7 @@
 teste titulo
 
 ## Layout mobile
-![Mobile 1](https://github.com/Junio-Alves/assets/blob/main/calculadora.mp4)
+![Mobile 1](https://github.com/Junio-Alves/assets/blob/main/calculadora.gif)
 
 # Autor
 
