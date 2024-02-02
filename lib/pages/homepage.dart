@@ -63,28 +63,73 @@ class HomePageState extends State<HomePage> {
                 Expanded(
                   child: Column(
                     children: [
-                      Container(
-                        constraints: const BoxConstraints(
-                          maxWidth:
-                              370, // Defina o tamanho máximo do contêiner conforme necessário
-                          maxHeight:
-                              200.0, // Defina a altura máxima do contêiner conforme necessário
-                        ),
-                        child: ListView.builder(
-                            itemCount: historico.getHistoricosList().length,
-                            itemBuilder: (context, int index) {
-                              return Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  Text(
-                                    historico.getHistoricosList()[index],
-                                    style: TextStyle(
-                                        fontSize: 24, color: Colors.grey[500]),
-                                  )
+                      GestureDetector(
+                        onLongPress: () {
+                          //limpar historico popup
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: const Text('Limpar historico'),
+                                content:
+                                    const Text('Deseja Limpar o historico?'),
+                                actions: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      ElevatedButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            historico.clearHistoricoList();
+                                            Navigator.of(context)
+                                                .pop(); // Fechar o popup
+                                          });
+                                        },
+                                        child: const Text('Limpar'),
+                                      ),
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                      ElevatedButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            Navigator.of(context)
+                                                .pop(); // Fechar o popup
+                                          });
+                                        },
+                                        child: const Text('Fechar'),
+                                      ),
+                                    ],
+                                  ),
                                 ],
                               );
-                            }),
+                            },
+                          );
+                        },
+                        child: Container(
+                          constraints: const BoxConstraints(
+                            maxWidth:
+                                370, // Defina o tamanho máximo do contêiner conforme necessário
+                            maxHeight:
+                                200.0, // Defina a altura máxima do contêiner conforme necessário
+                          ),
+                          child: ListView.builder(
+                              itemCount: historico.getHistoricosList().length,
+                              itemBuilder: (context, int index) {
+                                return Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Text(
+                                      historico.getHistoricosList()[index],
+                                      style: TextStyle(
+                                          fontSize: 24,
+                                          color: Colors.grey[500]),
+                                    )
+                                  ],
+                                );
+                              }),
+                        ),
                       ),
                     ],
                   ),

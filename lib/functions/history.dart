@@ -22,4 +22,8 @@ class Historico {
   clearHistorico() {
     _historico = '';
   }
+
+  clearHistoricoList() {
+    _historicos = [];
+  }
 }
