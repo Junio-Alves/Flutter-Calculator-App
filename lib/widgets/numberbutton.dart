@@ -37,7 +37,7 @@ class _BuildButtonState extends State<BuildButton> {
             //função de limpar o texto
           },
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.white, // Cor de fundo vermelho
+            backgroundColor: Colors.transparent, // Cor de fundo vermelho
           ),
           icon: Text(
             widget.button,

@@ -37,27 +37,34 @@ class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: const Color.fromARGB(255, 32, 35, 66),
       //APPBAR
       appBar: AppBar(
         title: const Text(
           "Calculadora",
-          style: TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
+          style: TextStyle(
+              fontSize: 25, fontWeight: FontWeight.w700, color: Colors.white),
         ),
-        backgroundColor: Colors.grey[300],
+        backgroundColor: Colors.transparent,
         centerTitle: true,
         actions: [
           //ABOUT
           IconButton(
             onPressed: () {},
             //botão que vai para tela de about do projeto
-            icon: const Icon(Icons.question_mark_outlined),
+            icon: const Icon(
+              Icons.question_mark_outlined,
+              color: Colors.white,
+            ),
           ),
           //MUDAR DE TEMA(FUTURO)
           IconButton(
             onPressed: () {},
             //botão para mudar tema
-            icon: const Icon(Icons.dark_mode_outlined),
+            icon: const Icon(
+              Icons.dark_mode_outlined,
+              color: Colors.white,
+            ),
           )
         ],
       ),
@@ -131,7 +138,7 @@ class HomePageState extends State<HomePage> {
                                       historico.getHistoricosList()[index],
                                       style: TextStyle(
                                           fontSize: 24,
-                                          color: Colors.grey[500]),
+                                          color: Colors.grey.withOpacity(0.2)),
                                     )
                                   ],
                                 );
@@ -150,6 +157,7 @@ class HomePageState extends State<HomePage> {
                       Text(
                         numeroDigito.join(),
                         style: const TextStyle(
+                          color: Colors.white,
                           fontSize: 40,
                           fontWeight: FontWeight.w700,
                         ),
@@ -163,7 +171,7 @@ class HomePageState extends State<HomePage> {
           Expanded(
             child: Container(
               decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: const Color.fromARGB(255, 48, 54, 116),
                   borderRadius: BorderRadius.circular(30.0)),
               child: const Column(
                 children: [
@@ -173,9 +181,9 @@ class HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         BuildButton(button: "C", color: Colors.red),
-                        BuildButton(button: "(", color: Colors.greenAccent),
-                        BuildButton(button: ")", color: Colors.greenAccent),
-                        BuildButton(button: "/", color: Colors.greenAccent),
+                        BuildButton(button: "(", color: Colors.amber),
+                        BuildButton(button: ")", color: Colors.amber),
+                        BuildButton(button: "/", color: Colors.amber),
                       ],
                     ),
                   ),
@@ -183,10 +191,10 @@ class HomePageState extends State<HomePage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        BuildButton(button: "7", color: Colors.black),
-                        BuildButton(button: "8", color: Colors.black),
-                        BuildButton(button: "9", color: Colors.black),
-                        BuildButton(button: "*", color: Colors.greenAccent),
+                        BuildButton(button: "7", color: Colors.white),
+                        BuildButton(button: "8", color: Colors.white),
+                        BuildButton(button: "9", color: Colors.white),
+                        BuildButton(button: "*", color: Colors.amber),
                       ],
                     ),
                   ),
@@ -194,10 +202,10 @@ class HomePageState extends State<HomePage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        BuildButton(button: "4", color: Colors.black),
-                        BuildButton(button: "5", color: Colors.black),
-                        BuildButton(button: "6", color: Colors.black),
-                        BuildButton(button: "-", color: Colors.greenAccent),
+                        BuildButton(button: "4", color: Colors.white),
+                        BuildButton(button: "5", color: Colors.white),
+                        BuildButton(button: "6", color: Colors.white),
+                        BuildButton(button: "-", color: Colors.amber),
                       ],
                     ),
                   ),
@@ -205,10 +213,10 @@ class HomePageState extends State<HomePage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        BuildButton(button: "1", color: Colors.black),
-                        BuildButton(button: "2", color: Colors.black),
-                        BuildButton(button: "3", color: Colors.black),
-                        BuildButton(button: "+", color: Colors.greenAccent),
+                        BuildButton(button: "1", color: Colors.white),
+                        BuildButton(button: "2", color: Colors.white),
+                        BuildButton(button: "3", color: Colors.white),
+                        BuildButton(button: "+", color: Colors.amber),
                       ],
                     ),
                   ),
@@ -216,9 +224,9 @@ class HomePageState extends State<HomePage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        BuildButton(button: "0", color: Colors.black),
+                        BuildButton(button: "0", color: Colors.white),
                         DeleteButton(),
-                        BuildButton(button: ".", color: Colors.greenAccent),
+                        BuildButton(button: ".", color: Colors.white),
                         //Botão = com widget personalizado só para ele
                         EqualsButton(button: "=", color: Colors.white),
                       ],

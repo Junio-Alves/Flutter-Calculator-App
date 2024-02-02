@@ -29,9 +29,12 @@ class _BuildButtonState extends State<DeleteButton> {
               //função de limpar o texto
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.white, // Cor de fundo vermelho
+              backgroundColor: Colors.transparent, // Cor de fundo vermelho
             ),
-            icon: const Icon(Icons.backspace)),
+            icon: const Icon(
+              Icons.backspace,
+              color: Colors.white,
+            )),
       ),
     );
   }

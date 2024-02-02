@@ -55,7 +55,7 @@ class _EqualsButtonState extends State<EqualsButton> {
             });
           },
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.greenAccent,
+            backgroundColor: Colors.amber,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10.0), // Borda circular
             ),
