@@ -28,7 +28,7 @@ class _BuildButtonState extends State<BuildButton> {
               if (textbutton == 'C') {
                 homepagestate.clearText();
                 textbutton = '';
-                homepagestate.historico.historico = '';
+                homepagestate.historico.clearHistorico();
                 //se o botão pressionado não for "C" nem "="
               } else if (textbutton != "C" && textbutton != "=") {
                 homepagestate.editNumeroText(textbutton);

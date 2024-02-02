@@ -1,5 +1,5 @@
 import 'package:calculadora/widgets/equalsbutton.dart';
-import 'package:calculadora/widgets/history.dart';
+import 'package:calculadora/functions/history.dart';
 import 'package:calculadora/widgets/numberbutton.dart';
 import 'package:flutter/material.dart';
 
@@ -17,8 +17,7 @@ class HomePageState extends State<HomePage> {
   editNumeroText(String newNumero) {
     setState(() {
       numero += newNumero;
-      historico.digitoHistorico(newNumero);
-      print("home page : ${historico.getHistorico()}");
+      historico.concatStrings(newNumero);
     });
   }
 
@@ -72,14 +71,14 @@ class HomePageState extends State<HomePage> {
                               200.0, // Defina a altura máxima do contêiner conforme necessário
                         ),
                         child: ListView.builder(
-                            itemCount: historico.historicos.length,
+                            itemCount: historico.getHistoricosList().length,
                             itemBuilder: (context, int index) {
                               return Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   Text(
-                                    historico.historicos[index],
+                                    historico.getHistoricosList()[index],
                                     style: TextStyle(
                                         fontSize: 24, color: Colors.grey[500]),
                                   )
