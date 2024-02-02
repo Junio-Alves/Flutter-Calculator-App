@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:calculadora/pages/homepage.dart';
+import 'package:calculadora/widgets/history.dart';
 import 'package:flutter/material.dart';
 import 'package:math_expressions/math_expressions.dart';
 
@@ -19,6 +20,7 @@ class _EqualsButtonState extends State<EqualsButton> {
     Parser p = Parser();
     ContextModel cm = ContextModel();
     String textbutton = widget.button;
+    Historico historico = Historico();
 
     HomePageState homepagestate =
         context.findAncestorStateOfType<HomePageState>()!;
@@ -37,10 +39,12 @@ class _EqualsButtonState extends State<EqualsButton> {
                   //converte e calcula a expressão em String para um double
                   Expression exp = p.parse(homepagestate.numero);
                   double resultado = exp.evaluate(EvaluationType.REAL, cm);
-
                   homepagestate.clearText();
-
+                  homepagestate.historico.digitoHistorico(" = ");
                   homepagestate.editNumeroText(resultado.toString());
+                  homepagestate.historico.historicosToList(
+                    homepagestate.historico.getHistorico(),
+                  );
                   textbutton = '';
                 } catch (error) {
                   homepagestate.clearText();

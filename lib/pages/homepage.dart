@@ -1,4 +1,5 @@
 import 'package:calculadora/widgets/equalsbutton.dart';
+import 'package:calculadora/widgets/history.dart';
 import 'package:calculadora/widgets/numberbutton.dart';
 import 'package:flutter/material.dart';
 
@@ -11,10 +12,13 @@ class HomePage extends StatefulWidget {
 
 class HomePageState extends State<HomePage> {
   String numero = '';
+  Historico historico = Historico();
 
   editNumeroText(String newNumero) {
     setState(() {
       numero += newNumero;
+      historico.digitoHistorico(newNumero);
+      print("home page : ${historico.getHistorico()}");
     });
   }
 
@@ -28,6 +32,7 @@ class HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[300],
+      //APPBAR
       appBar: AppBar(
         title: const Text(
           "Calculadora",
@@ -36,11 +41,13 @@ class HomePageState extends State<HomePage> {
         backgroundColor: Colors.grey[300],
         centerTitle: true,
         actions: [
+          //ABOUT
           IconButton(
             onPressed: () {},
             //botão que vai para tela de about do projeto
             icon: const Icon(Icons.question_mark_outlined),
           ),
+          //MUDAR DE TEMA(FUTURO)
           IconButton(
             onPressed: () {},
             //botão para mudar tema
@@ -49,19 +56,55 @@ class HomePageState extends State<HomePage> {
         ],
       ),
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           SizedBox(
             height: 300,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                //Caixa de texto onde mostra o calculo/resultado
-                Text(
-                  numero,
-                  textAlign: TextAlign.end,
-                  style: const TextStyle(
-                      fontSize: 50, fontWeight: FontWeight.w600),
+                Expanded(
+                  child: Column(
+                    children: [
+                      Container(
+                        constraints: const BoxConstraints(
+                          maxWidth:
+                              370, // Defina o tamanho máximo do contêiner conforme necessário
+                          maxHeight:
+                              200.0, // Defina a altura máxima do contêiner conforme necessário
+                        ),
+                        child: ListView.builder(
+                            itemCount: historico.historicos.length,
+                            itemBuilder: (context, int index) {
+                              return Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    historico.historicos[index],
+                                    style: TextStyle(
+                                        fontSize: 24, color: Colors.grey[500]),
+                                  )
+                                ],
+                              );
+                            }),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        numero,
+                        style: const TextStyle(
+                          fontSize: 40,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ],
             ),
