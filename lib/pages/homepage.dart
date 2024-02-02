@@ -1,3 +1,4 @@
+import 'package:calculadora/widgets/deletebutton.dart';
 import 'package:calculadora/widgets/equalsbutton.dart';
 import 'package:calculadora/functions/history.dart';
 import 'package:calculadora/widgets/numberbutton.dart';
@@ -11,19 +12,25 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
-  String numero = '';
+  List<String> numeroDigito = [];
   Historico historico = Historico();
 
   editNumeroText(String newNumero) {
     setState(() {
-      numero += newNumero;
+      numeroDigito.add(newNumero);
       historico.concatStrings(newNumero);
     });
   }
 
   clearText() {
     setState(() {
-      numero = '';
+      numeroDigito.clear();
+    });
+  }
+
+  deleteLastDigit() {
+    setState(() {
+      numeroDigito.removeLast();
     });
   }
 
@@ -141,7 +148,7 @@ class HomePageState extends State<HomePage> {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Text(
-                        numero,
+                        numeroDigito.join(),
                         style: const TextStyle(
                           fontSize: 40,
                           fontWeight: FontWeight.w700,
@@ -210,7 +217,7 @@ class HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         BuildButton(button: "0", color: Colors.black),
-                        BuildButton(button: "00", color: Colors.black),
+                        DeleteButton(),
                         BuildButton(button: ".", color: Colors.greenAccent),
                         //Botão = com widget personalizado só para ele
                         EqualsButton(button: "=", color: Colors.white),

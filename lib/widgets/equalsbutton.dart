@@ -32,11 +32,12 @@ class _EqualsButtonState extends State<EqualsButton> {
         child: IconButton(
           onPressed: () {
             setState(() {
-              if (textbutton == '=' && homepagestate.numero != '') {
+              if (textbutton == '=' &&
+                  homepagestate.numeroDigito.join() != '') {
                 //tenta calcular a String
                 try {
                   //converte e calcula a expressão em String para um double
-                  Expression exp = p.parse(homepagestate.numero);
+                  Expression exp = p.parse(homepagestate.numeroDigito.join());
                   double resultado = exp.evaluate(EvaluationType.REAL, cm);
                   //limpa o texto da tela
                   homepagestate.clearText();

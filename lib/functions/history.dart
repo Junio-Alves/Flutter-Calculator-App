@@ -1,10 +1,10 @@
 class Historico {
-  String _historico = '';
+  List<String> _historico = [];
   List<String> _historicos = [];
 
   //concatena tudo que é digitado dentro de uma string _historico
   concatStrings(String digito) {
-    _historico += digito;
+    _historico.add(digito);
   }
 
   //Passa a string _historico para uma lista
@@ -15,12 +15,12 @@ class Historico {
   }
 
   //getters
-  getHistorico() => _historico;
+  getHistorico() => _historico.join();
   getHistoricosList() => _historicos;
 
   //limpa toda a string historico
   clearHistorico() {
-    _historico = '';
+    _historico.clear();
   }
 
   clearHistoricoList() {
