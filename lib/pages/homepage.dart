@@ -170,9 +170,13 @@ class HomePageState extends State<HomePage> {
           ),
           Expanded(
             child: Container(
-              decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 48, 54, 116),
-                  borderRadius: BorderRadius.circular(30.0)),
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(30),
+                  topRight: Radius.circular(30),
+                ),
+                color: Color.fromARGB(255, 48, 54, 116),
+              ),
               child: const Column(
                 children: [
                   Expanded(
