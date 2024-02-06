@@ -2,7 +2,7 @@ import 'package:calculadora/pages/homepage.dart';
 import 'package:flutter/material.dart';
 
 class DeleteButton extends StatefulWidget {
-  final Color color;
+  final Color? color;
   const DeleteButton({super.key, required this.color});
 
   @override

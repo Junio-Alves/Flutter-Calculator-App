@@ -241,7 +241,7 @@ class HomePageState extends State<HomePage> {
                       children: [
                         BuildButton(button: "0", color: textColor),
                         DeleteButton(
-                          color: textColor!,
+                          color: textColor,
                         ),
                         BuildButton(button: ".", color: textColor),
                         //Botão = com widget personalizado só para ele
