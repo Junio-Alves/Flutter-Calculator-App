@@ -2,6 +2,7 @@ import 'package:calculadora/widgets/deletebutton.dart';
 import 'package:calculadora/widgets/equalsbutton.dart';
 import 'package:calculadora/functions/history.dart';
 import 'package:calculadora/widgets/numberbutton.dart';
+import 'package:calculadora/functions/theme.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -11,17 +12,11 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => HomePageState();
 }
 
+bool darktheme = false;
+
 class HomePageState extends State<HomePage> {
   List<String> numeroDigito = [];
   Historico historico = Historico();
-  bool darktheme = true;
-  //Cores padrao
-  Color? backgroundColor;
-  Color? scaffoldColor;
-  Color? textColor;
-  Color? functionButtonColor;
-  Color? borderColor;
-  Color? historyColor;
 
   editNumeroText(String newNumero) {
     setState(() {
@@ -40,6 +35,13 @@ class HomePageState extends State<HomePage> {
     setState(() {
       numeroDigito.removeLast();
     });
+  }
+
+  @override
+  void initState() {
+    // define o thema padrão como branco
+    switchTheme('white');
+    super.initState();
   }
 
   @override
@@ -69,7 +71,7 @@ class HomePageState extends State<HomePage> {
           IconButton(
             onPressed: () {
               setState(() {
-                darktheme == true ? swhitchTheme('white') : swhitchTheme(null);
+                darktheme == true ? switchTheme('white') : switchTheme('dark');
               });
             },
             //botão para mudar tema
@@ -195,7 +197,7 @@ class HomePageState extends State<HomePage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        BuildButton(button: "C", color: Colors.red),
+                        const BuildButton(button: "C", color: Colors.red),
                         BuildButton(button: "(", color: functionButtonColor),
                         BuildButton(button: ")", color: functionButtonColor),
                         BuildButton(button: "/", color: functionButtonColor),
@@ -260,25 +262,5 @@ class HomePageState extends State<HomePage> {
         ],
       ),
     );
-  }
-
-  swhitchTheme(String? theme) {
-    if (theme == "white") {
-      darktheme = false;
-      backgroundColor = const Color.fromARGB(255, 201, 201, 201);
-      scaffoldColor = Colors.white;
-      textColor = Colors.black;
-      functionButtonColor = Colors.blue;
-      borderColor = Colors.blue;
-      historyColor = Colors.black.withOpacity(0.6);
-    } else {
-      darktheme = true;
-      backgroundColor = const Color.fromARGB(255, 30, 34, 70);
-      scaffoldColor = const Color.fromARGB(255, 48, 54, 116);
-      textColor = Colors.white;
-      functionButtonColor = Colors.amber;
-      borderColor = Colors.amber;
-      historyColor = Colors.white.withOpacity(0.3);
-    }
   }
 }
