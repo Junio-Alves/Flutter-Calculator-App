@@ -2,7 +2,8 @@ import 'package:calculadora/pages/homepage.dart';
 import 'package:flutter/material.dart';
 
 class DeleteButton extends StatefulWidget {
-  const DeleteButton({super.key});
+  final Color color;
+  const DeleteButton({super.key, required this.color});
 
   @override
   State<DeleteButton> createState() => _BuildButtonState();
@@ -31,9 +32,9 @@ class _BuildButtonState extends State<DeleteButton> {
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.transparent, // Cor de fundo vermelho
             ),
-            icon: const Icon(
+            icon: Icon(
               Icons.backspace,
-              color: Colors.white,
+              color: widget.color,
             )),
       ),
     );

@@ -7,8 +7,13 @@ import 'package:math_expressions/math_expressions.dart';
 
 class EqualsButton extends StatefulWidget {
   final String button;
-  final Color color;
-  const EqualsButton({super.key, required this.button, required this.color});
+  final Color? color;
+  final Color? borderColor;
+  const EqualsButton(
+      {super.key,
+      required this.button,
+      required this.color,
+      required this.borderColor});
 
   @override
   State<EqualsButton> createState() => _EqualsButtonState();
@@ -55,7 +60,7 @@ class _EqualsButtonState extends State<EqualsButton> {
             });
           },
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.amber,
+            backgroundColor: widget.borderColor,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10.0), // Borda circular
             ),

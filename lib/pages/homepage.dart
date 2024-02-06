@@ -14,6 +14,14 @@ class HomePage extends StatefulWidget {
 class HomePageState extends State<HomePage> {
   List<String> numeroDigito = [];
   Historico historico = Historico();
+  bool darktheme = true;
+  //Cores padrao
+  Color? backgroundColor;
+  Color? scaffoldColor;
+  Color? textColor;
+  Color? functionButtonColor;
+  Color? borderColor;
+  Color? historyColor;
 
   editNumeroText(String newNumero) {
     setState(() {
@@ -37,13 +45,13 @@ class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 32, 35, 66),
+      backgroundColor: backgroundColor,
       //APPBAR
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           "Calculadora",
           style: TextStyle(
-              fontSize: 25, fontWeight: FontWeight.w700, color: Colors.white),
+              fontSize: 25, fontWeight: FontWeight.w700, color: textColor),
         ),
         backgroundColor: Colors.transparent,
         centerTitle: true,
@@ -52,18 +60,22 @@ class HomePageState extends State<HomePage> {
           IconButton(
             onPressed: () {},
             //botão que vai para tela de about do projeto
-            icon: const Icon(
+            icon: Icon(
               Icons.question_mark_outlined,
-              color: Colors.white,
+              color: textColor,
             ),
           ),
           //MUDAR DE TEMA(FUTURO)
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              setState(() {
+                darktheme == true ? swhitchTheme('white') : swhitchTheme(null);
+              });
+            },
             //botão para mudar tema
-            icon: const Icon(
+            icon: Icon(
               Icons.dark_mode_outlined,
-              color: Colors.white,
+              color: textColor,
             ),
           )
         ],
@@ -137,8 +149,7 @@ class HomePageState extends State<HomePage> {
                                     Text(
                                       historico.getHistoricosList()[index],
                                       style: TextStyle(
-                                          fontSize: 24,
-                                          color: Colors.grey.withOpacity(0.2)),
+                                          fontSize: 24, color: historyColor),
                                     )
                                   ],
                                 );
@@ -156,8 +167,8 @@ class HomePageState extends State<HomePage> {
                     children: [
                       Text(
                         numeroDigito.join(),
-                        style: const TextStyle(
-                          color: Colors.white,
+                        style: TextStyle(
+                          color: textColor,
                           fontSize: 40,
                           fontWeight: FontWeight.w700,
                         ),
@@ -170,14 +181,14 @@ class HomePageState extends State<HomePage> {
           ),
           Expanded(
             child: Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(30),
                   topRight: Radius.circular(30),
                 ),
-                color: Color.fromARGB(255, 48, 54, 116),
+                color: scaffoldColor,
               ),
-              child: const Column(
+              child: Column(
                 children: [
                   Expanded(
                     //Todos os botões
@@ -185,9 +196,9 @@ class HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         BuildButton(button: "C", color: Colors.red),
-                        BuildButton(button: "(", color: Colors.amber),
-                        BuildButton(button: ")", color: Colors.amber),
-                        BuildButton(button: "/", color: Colors.amber),
+                        BuildButton(button: "(", color: functionButtonColor),
+                        BuildButton(button: ")", color: functionButtonColor),
+                        BuildButton(button: "/", color: functionButtonColor),
                       ],
                     ),
                   ),
@@ -195,10 +206,10 @@ class HomePageState extends State<HomePage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        BuildButton(button: "7", color: Colors.white),
-                        BuildButton(button: "8", color: Colors.white),
-                        BuildButton(button: "9", color: Colors.white),
-                        BuildButton(button: "*", color: Colors.amber),
+                        BuildButton(button: "7", color: textColor),
+                        BuildButton(button: "8", color: textColor),
+                        BuildButton(button: "9", color: textColor),
+                        BuildButton(button: "*", color: functionButtonColor),
                       ],
                     ),
                   ),
@@ -206,10 +217,10 @@ class HomePageState extends State<HomePage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        BuildButton(button: "4", color: Colors.white),
-                        BuildButton(button: "5", color: Colors.white),
-                        BuildButton(button: "6", color: Colors.white),
-                        BuildButton(button: "-", color: Colors.amber),
+                        BuildButton(button: "4", color: textColor),
+                        BuildButton(button: "5", color: textColor),
+                        BuildButton(button: "6", color: textColor),
+                        BuildButton(button: "-", color: functionButtonColor),
                       ],
                     ),
                   ),
@@ -217,10 +228,10 @@ class HomePageState extends State<HomePage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        BuildButton(button: "1", color: Colors.white),
-                        BuildButton(button: "2", color: Colors.white),
-                        BuildButton(button: "3", color: Colors.white),
-                        BuildButton(button: "+", color: Colors.amber),
+                        BuildButton(button: "1", color: textColor),
+                        BuildButton(button: "2", color: textColor),
+                        BuildButton(button: "3", color: textColor),
+                        BuildButton(button: "+", color: functionButtonColor),
                       ],
                     ),
                   ),
@@ -228,11 +239,17 @@ class HomePageState extends State<HomePage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        BuildButton(button: "0", color: Colors.white),
-                        DeleteButton(),
-                        BuildButton(button: ".", color: Colors.white),
+                        BuildButton(button: "0", color: textColor),
+                        DeleteButton(
+                          color: textColor!,
+                        ),
+                        BuildButton(button: ".", color: textColor),
                         //Botão = com widget personalizado só para ele
-                        EqualsButton(button: "=", color: Colors.white),
+                        EqualsButton(
+                          button: "=",
+                          color: textColor,
+                          borderColor: borderColor,
+                        ),
                       ],
                     ),
                   ),
@@ -243,5 +260,25 @@ class HomePageState extends State<HomePage> {
         ],
       ),
     );
+  }
+
+  swhitchTheme(String? theme) {
+    if (theme == "white") {
+      darktheme = false;
+      backgroundColor = const Color.fromARGB(255, 201, 201, 201);
+      scaffoldColor = Colors.white;
+      textColor = Colors.black;
+      functionButtonColor = Colors.blue;
+      borderColor = Colors.blue;
+      historyColor = Colors.black.withOpacity(0.6);
+    } else {
+      darktheme = true;
+      backgroundColor = const Color.fromARGB(255, 30, 34, 70);
+      scaffoldColor = const Color.fromARGB(255, 48, 54, 116);
+      textColor = Colors.white;
+      functionButtonColor = Colors.amber;
+      borderColor = Colors.amber;
+      historyColor = Colors.white.withOpacity(0.3);
+    }
   }
 }

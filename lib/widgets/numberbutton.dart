@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class BuildButton extends StatefulWidget {
   final String button;
-  final Color color;
+  final Color? color;
   const BuildButton({super.key, required this.button, required this.color});
 
   @override
